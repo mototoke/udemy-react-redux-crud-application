@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, submit } from "redux-form";
 import { Link } from "react-router-dom";
 
 import { postEvent } from '../actions';
@@ -29,7 +29,7 @@ class EventsNew extends React.Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, pristine, submitting } = this.props;
 
         return (
             <form onSubmit={handleSubmit(this.onSubmit)}>
@@ -41,7 +41,7 @@ class EventsNew extends React.Component {
                 </div>
 
                 <div>
-                    <input type="submit" value="Submit" disabled={false} />
+                    <input type="submit" value="Submit" disabled={pristine || submitting} />
                     <Link to="/" >Cancel</Link>
                 </div>
             </form>
